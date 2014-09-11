@@ -1,6 +1,6 @@
 ## About the ExCID Report ##
 
-The Exome Coverage and Identification (ExCID) Report has been developed to analyze the sequence depth of each exome, report the average coverage across each target, and identify bases below 20X.  Furthermore, the tool also reports the gene, transcript, and exon captured by the target.  The report has the option to output data tracks of sample targets and coverage that can be visualized in UCSC and IGV genome browsers.
+The Exome Coverage and Identification (ExCID) Report is a software tool developed at BCM-HGSC to assess sequence depth in user-defined targeted regions.  The tool was initially developed for use in targeted capture applications, but its functionality has evolved to encompass any sequencing application from amplicon and targeted capture sequencing to WGS.  ExCID analyzes sequence depth of any sequencing event, reports the average coverage across each target, and identifies bases below a user-defined threshold (20X coverage by default).  Furthermore, the tool annotates the target with the latest gene, transcript, and exon information from RefSeq and the Human Gene Mutation Database (HGMD).  The report has the option to output data tracks of sample targets and coverage that can be visualized in UCSC and IGV genome browsers.
 
 ## Outputs ##
 * Outputs length, average coverage, and gene annotations for targets in BCM-HGSC VCRome (or your custom design)
