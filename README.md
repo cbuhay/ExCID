@@ -10,6 +10,7 @@ The Exome Coverage and Identification (ExCID) Report is a software tool develope
 ## Installation ##
 
 Requirements: 
+
 1. Latest version of JAVA and PERL.
 2. If on a Mac, you might need to install XCode: https://developer.apple.com/xcode/downloads/
 
