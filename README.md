@@ -10,15 +10,18 @@ The Exome Coverage and Identification (ExCID) Report is a software tool develope
 
 ## Installation ##
 
-Requirements: 
-    1. Latest version of JAVA and PERL.
-    2. If on a Mac, you might need to install XCode: https://developer.apple.com/xcode/downloads/
+Requirements:
+
+        1. Latest version of JAVA and PERL.
+        2. If on a Mac, you might need to install XCode: https://developer.apple.com/xcode/downloads/
 
 1) Fill the information in Config.txt.
+
         DataBaseDir=/path/to/directory/to_put_the_databases/
         AnnotationDir=/path/to/directory/to_put_the_annotations_of_bed_files/
         
-2) Run setup.sh script from command line. 
+2) Run setup.sh script from command line.
+
         $./setup.sh
         
 The setup script installs the bedtools version 2.17.0 (Released under GNU public license version 2 (GPL v2)) and maintained by the Quinlan Laboratory at the University of Virginia.
@@ -28,13 +31,13 @@ It will download the latest RefSEQ, VEGA, CCDS and miRBASE databses for bed file
 
 1) For using with VCrome regions run the program as:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bam <BAM file> -m <min threshold>
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold>
         
 Multiple Bam files can be provided eg.
     
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold>
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold>
     OR
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bamList <BAM list> -m <min threshold>
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bamList <BAM list> -m <min threshold>
           where the BAM list is a test file with 1 bam file per line.
         
 If the minimum threshold is not provided by the user then 20x coverage is assummed by default.
@@ -42,23 +45,23 @@ If the minimum threshold is not provided by the user then 20x coverage is assumm
     
 2) For using with a user defined BED file:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bam <BAM file> -m <min threshold> -i <Bed file>
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file>
         
 Multiple Bam files can be provided eg.
     
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold> -i <Bed file>
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold> -i <Bed file>
         
 If the minimum threshold is not provided by the user then 20x coverage is assummed by default.
 
 
 3) For generating a wig file for all the target regions and a bed file for low covered regions for visualization in standard genome browser, use the '-wig' option:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bam <BAM file> -m <min threshold> -i <Bed file> -wig
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file> -wig
         
 
 4) Using '-d' option will not consider duplicates reads for generating the coverages statistics:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final -bam <BAM file> -m <min threshold> -i <Bed file> -d
+        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file> -d
         
 
 The BED file will be annotated with RefSEQ, CCDS, VEGA and miRBASE gene annotations. The RefSEQ, CCDS, VEGA and miRBASE database can be updated as:
