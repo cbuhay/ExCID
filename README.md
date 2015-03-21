@@ -10,23 +10,15 @@ The Exome Coverage and Identification (ExCID) Report is a software tool develope
 
 ## Installation ##
 
-<<<<<<< HEAD
-Requirements: Requirements: Latest version of JAVA and PERL. If on a Mac, you might need to install XCode: https://developer.apple.com/xcode/downloads
+Requirements: 
+    1. Latest version of JAVA and PERL.
+    2. If on a Mac, you might need to install XCode: https://developer.apple.com/xcode/downloads/
 
 1) Fill the information in Config.txt.
         DataBaseDir=/path/to/directory/to_put_the_databases/
         AnnotationDir=/path/to/directory/to_put_the_annotations_of_bed_files/
         
-2) Run setup.sh script from command line.
-=======
-Requirements: 
-
-1. Latest version of JAVA and PERL.
-2. If on a Mac, you might need to install XCode: https://developer.apple.com/xcode/downloads/
-
-Run setup.sh script from command line.
-
->>>>>>> FETCH_HEAD
+2) Run setup.sh script from command line. 
         $./setup.sh
         
 The setup script installs the bedtools version 2.17.0 (Released under GNU public license version 2 (GPL v2)) and maintained by the Quinlan Laboratory at the University of Virginia.
