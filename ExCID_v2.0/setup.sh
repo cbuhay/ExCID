@@ -18,7 +18,7 @@ printf "Extracting external databases... ";
 tar -xzf $BASEDIR/database.tgz;
 printf "DONE.\n";
 
-mv $BASEDIR/database $DataBaseDir ;
+mv $BASEDIR/database/* $DataBaseDir/ ;
 
 rsync -a -P rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/refGene.txt.gz $DataBaseDir ;
 rsync -a -P rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/ccdsGene.txt.gz $DataBaseDir ;
