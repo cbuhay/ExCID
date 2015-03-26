@@ -10,6 +10,10 @@ my $bed = $ARGV[0] || &USAGE;
 my $database = $ARGV[1] || &USAGE;
 my $output_dir = $ARGV[2] || dirname($bed);
 my $db_name = basename($database);
+my $script_dir;
+my $script_dir_tmp = $0;
+$script_dir_tmp =~m/^.+\//;
+$script_dir=$&;
 
 system("ln -s $bed $output_dir/");
 
@@ -32,7 +36,7 @@ for(my $i =0; $i < $cols; $i++){
 $cmd .= "\$".($cols+3+1)."\"\t\""."\$".($cols+3+1+1)." ";
 
 
-system("bedtools intersect -a $bed -b $database -wao | awk -F\$\'\t\' '{print $cmd}' > $bed.$db_name.Annotated");
+system("$script_dir/bin/bedtools intersect -a $bed -b $database -wao | awk -F\$\'\t\' '{print $cmd}' > $bed.$db_name.Annotated");
 
 my %data_annotation;
 open(my $fh, "< $bed.$db_name.Annotated") or die $!;
@@ -106,7 +110,7 @@ close($fho);
 
 
 
-system("bedtools sort -i $bed.$db_name.Annotated.edit > $bed-$db_name");
+system("$script_dir/bin/bedtools sort -i $bed.$db_name.Annotated.edit > $bed-$db_name");
 
 my $rm_file = "$bed.$db_name.Annotated.edit";
 unlink $rm_file or warn "Could not unlink $rm_file: $!";

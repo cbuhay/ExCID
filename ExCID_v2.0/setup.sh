@@ -26,8 +26,14 @@ rsync -a -P rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/vegaGene.tx
 rsync -a -P rsync://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/vegaGtp.txt.gz $DataBaseDir ;
 cp miRBASE_r20.gff2 $DataBaseDir/miRBASE_r20.gff2 ;
 
-ls --color=never $DataBaseDir/*.gz | while read FILE ; do gzip -d "$FILE" ; done ;
-ls --color=never $DataBaseDir/*.txt | while read FILE ; do awk -F "\t" '{print $3"\t"$7"\t"$8"\t"$2"\t"$13"\t"$9"\t"$10"\t"$11}' "$FILE" > "$FILE.bed" ; done  ;
+if [ "$(uname)" == "Darwin" ]; then
+    ls $DataBaseDir/*.gz | while read FILE ; do gzip -d "$FILE" ; done ;
+	ls $DataBaseDir/*.txt | while read FILE ; do awk -F "\t" '{print $3"\t"$7"\t"$8"\t"$2"\t"$13"\t"$9"\t"$10"\t"$11}' "$FILE" > "$FILE.bed" ; done  ;        
+elif [ "$(uname)" == "Linux" ]; then
+    ls --color=never $DataBaseDir/*.gz | while read FILE ; do gzip -d "$FILE" ; done ;
+	ls --color=never $DataBaseDir/*.txt | while read FILE ; do awk -F "\t" '{print $3"\t"$7"\t"$8"\t"$2"\t"$13"\t"$9"\t"$10"\t"$11}' "$FILE" > "$FILE.bed" ; done  ;
+fi
+
 rm $DataBaseDir/vegaGtp.txt.bed ;
 awk -F "\t" '{print $1"\t"$2}' $DataBaseDir/vegaGtp.txt > $DataBaseDir/VEGA-hgnc_names ; 
 rm $DataBaseDir/vegaGtp.txt ;

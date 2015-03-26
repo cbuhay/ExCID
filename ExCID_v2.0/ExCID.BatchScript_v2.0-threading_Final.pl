@@ -28,9 +28,9 @@ my $script_dir;
 my $script_dir_tmp = $0;
 $script_dir_tmp =~m/^.+\//;
 $script_dir=$&;
-#my $covfasta_gen_script = "/hgsc_software/java/jdk1.7.0_25/bin/java -Xmx8000M -jar $script_dir/bin/CovFasta_Generator.jar ";
-my $capcovfasta_gen_script = "/hgsc_software/java/jdk1.7.0_25/bin/java -Xmx8000M -jar $script_dir/bin/CapStatsV2.5.jar ";
-my $WGcovfasta_gen_script = "/hgsc_software/java/jdk1.7.0_25/bin/java -Xmx8000M -jar $script_dir/bin/WGSStats_v1.jar ";
+#my $covfasta_gen_script = "java -Xmx8000M -jar $script_dir/bin/CovFasta_Generator.jar ";
+my $capcovfasta_gen_script = "java -Xmx8000M -jar $script_dir/bin/CapStatsV2.6.jar ";
+my $WGcovfasta_gen_script = "java -Xmx8000M -jar $script_dir/bin/WGSStats_v1.1.jar ";
 
 my @tmp = `grep "DataBaseDir=" $script_dir/Config.txt`;
 $tmp[0]=~s/DataBaseDir=//;
@@ -154,8 +154,8 @@ if ($opt{o}) {
         $bed = "$output_dir_bed/$tmp_bed_file_name.Annotated";
         system("cp $opt{ab} $annotated_bed_File");
         system("mkdir -p $index");
-        system("awk \'{print > \"$index/\"\$1\".targetindex.txt\"}\' $annotated_bed_File");
-        
+        #system("awk \'{print > \"$index/\"\$1\".targetindex.txt\"}\' $annotated_bed_File");
+        system("awk \'{print \$0 >> (\"$index/\"\$1\".targetindex.txt\") ; close(\"$index/\"\$1\".targetindex.txt\")}\' $annotated_bed_File");
         open(my $fhb,"<$annotated_bed_File") or die $!;
         my $line = <$fhb>;
         chomp($line);
@@ -291,7 +291,7 @@ if ($opt{o}) {
     $header .="\n";
     system("mkdir -p $index");
     
-    system("awk \'{print > \"$index/\"\$1\".targetindex.txt\"}\' $annotated_bed_File");
+    system("awk \'{print \$0 >> (\"$index/\"\$1\".targetindex.txt\") ; close(\"$index/\"\$1\".targetindex.txt\")}\' $annotated_bed_File");
     
     my $rm_file = "$annotated_bed_File-tmp";
     unlink $rm_file or warn "Could not unlink $rm_file: $!";
