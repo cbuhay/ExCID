@@ -6,8 +6,26 @@ my $annotated_index = $ARGV[0];
 my $HGNC = $ARGV[1];
 my $VEGA_HGNC_names = $ARGV[2];
 
-open(my $fh,"<$annotated_index") or die $!;
+my %words_to_genes = (); # not a perfect index, but will do the same as "grep -w"
+open(my $hgnc_fh, "<$HGNC") or die $!;
+while (my $line = <$hgnc_fh>) {
+    chomp $line;
+    my @row = split(/[\s,]/, $line);
+    my $gene = shift @row;
+    map { $words_to_genes{$_} = $gene } @row;
+}
+close $hgnc_fh or die $!;
 
+my %vega_index = ();
+open(my $vega_fh, "<$VEGA_HGNC_names") or die $!;
+while (my $line = <$vega_fh>) {
+	chomp $line;
+	my ($a, $b) = split "\t", $line;
+	$vega_index{$b} = $a;
+}
+close $vega_fh or die $!;
+
+open(my $fh,"<$annotated_index") or die $!;
 
 while (my $line = <$fh>) {
     
@@ -17,23 +35,10 @@ while (my $line = <$fh>) {
     my @transcript_ID_tmp_split = split("_exon_",$ID);
     my $transcript_ID = $transcript_ID_tmp_split[0];
     
-    my @grep2 = `grep -w "$transcript_ID" $VEGA_HGNC_names `;
-    if (scalar(@grep2) > 0) {
-        my @grep_tmp = split("\t",$grep2[0]);
-        chomp($grep_tmp[0]);
-        $transcript_ID= $grep_tmp[0];  
-    }
+	$transcript_ID = $vega_index{$transcript_ID} || $transcript_ID;
+	my $gene_name = $words_to_genes{$transcript_ID} || '.';
     
-    my @grep = `grep -w "$transcript_ID" $HGNC `;
-    
-    if (scalar(@grep) == 1) {
-        my @tmp = split("\t",$grep[0]);
-        my $gene_name = $tmp[0];
-        print "$chr\t$start\t$Stop\t$gene\t$ID\t$gene_name\n";
-    }else{
-        print "$chr\t$start\t$Stop\t$gene\t$ID\t.\n";
-       # print STDERR "$chr\t$start\t$Stop\t$gene\t$ID\t.\n";
-    }
+	print "$chr\t$start\t$Stop\t$gene\t$ID\t$gene_name\n";
     
 }
 
