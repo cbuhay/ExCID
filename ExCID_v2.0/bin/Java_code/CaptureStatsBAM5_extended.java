@@ -481,7 +481,7 @@ public class CaptureStatsBAM5_extended
 
 
             FileWriter report = new FileWriter(fname+".CoverageReport.csv");
-            report.write("Version: CapStatsV2.5 2014-05-08\n");
+            report.write("Version: "+VERSION+"\n");
             report.write("BUFFER size:,"+BUFFER+"\n");
             report.write("Read Stats\n");
             report.write("Total Reads Produced:,"+totalReadsProduced+"\n");
