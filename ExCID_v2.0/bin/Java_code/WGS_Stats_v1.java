@@ -56,7 +56,7 @@ public class WGS_Stats_v1
 	static int hitTargetCount = 0;  //total targets with at least 1 read aligned to them
 	static int hitTarget_bufferonly_Count = 0; //total targets with no hits, except in buffer
 	static int[] covHisto = new int[1001]; //coverage histogram
-        static int[] covHisto_WG = new int[1001]; //coverage histogram for whole Genome
+        static long[] covHisto_WG = new long[1001]; //coverage histogram for whole Genome
 	static int nonTragetGoodHits = 0; //regions that have high coverage but are not in the target
 	static String VERSION = "WGSStatsV1.1 2015-03-25";
 	static Hashtable<String, SAMFileWriter> fht ; 
