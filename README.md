@@ -31,13 +31,13 @@ It will download the latest RefSEQ, VEGA, CCDS and miRBASE databses for bed file
 
 1) For using with VCrome regions run the program as:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold>
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bam <BAM file> -m <min threshold>
         
 Multiple Bam files can be provided eg.
     
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold>
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold>
     OR
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bamList <BAM list> -m <min threshold>
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bamList <BAM list> -m <min threshold>
           where the BAM list is a test file with 1 bam file per line.
         
 If the minimum threshold is not provided by the user then 20x coverage is assummed by default.
@@ -45,23 +45,23 @@ If the minimum threshold is not provided by the user then 20x coverage is assumm
     
 2) For using with a user defined BED file:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file>
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file>
         
 Multiple Bam files can be provided eg.
     
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold> -i <Bed file>
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bam <BAM file1> -bam <BAM file2> -bam <BAM file3> -m <min threshold> -i <Bed file>
         
 If the minimum threshold is not provided by the user then 20x coverage is assummed by default.
 
 
 3) For generating a wig file for all the target regions and a bed file for low covered regions for visualization in standard genome browser, use the '-wig' option:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file> -wig
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file> -wig
         
 
 4) Using '-d' option will not consider duplicates reads for generating the coverages statistics:
 
-        $ perl ExCID.BatchScript_v2.0-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file> -d
+        $ perl ExCID.BatchScript_v2.1-threading_Final.pl -bam <BAM file> -m <min threshold> -i <Bed file> -d
         
 
 The BED file will be annotated with RefSEQ, CCDS, VEGA and miRBASE gene annotations. The RefSEQ, CCDS, VEGA and miRBASE database can be updated as:
