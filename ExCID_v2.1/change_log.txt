@@ -1,0 +1,11 @@
+Bugfix[WGS_Stats_v1.java]: The Size of each Chromosome registered in the header of the “*wholeGenomeCov.fasta” was reported as (Size+1) and is not fixed. (Eg: >1 1 249250622, Should Be: >1 1 249250621)
+Bugfix[WGS_Stats_v1.java]: covHistio_WG variable was defined  as 'int' and could go over the data type limit while hadling whole genome sample. This is now changed to 'long'.
+Bugfix[batch_*_Lowcov.bed]: There was an extra tab between the data for 'length' and 'gene' for each row and an extra column in the end of the output file. The file has been fixed to match the Headers.
+Bugfix[batch_*_Lowcov.bed]: Interval length now matches length of 0-based genome coordinate positions in 'batch_*_Lowcov.bed' file.
+Bugfix[ExCID.BatchScript_v2.1-threading_Final.pl]: Targets BED file with more than 3 coulmns were not handled correctly while Annotation. This has been fixed and will now allow BED file with more than 3 columns as Input.
+Bugfix[ExCID.BatchScript_v2.1-threading_Final.pl]: In Batch mode, while obtaining the Gene% coverage, '-checkHGMD' was applied as a mandatory option. This has been corrected and is changed to optional.
+Bugfix: An assumption made in “ExCID.grep_gene_list_pct_Final-miRNA.pl” and “ExCID.grep_gene_list_pct_Final.pl” scripts about the location of the database files. This has been fixed to obtain the location from the Config.txt .
+Bugfix[CapStatsV2.6.java]: A VERSION variable is used to write the version int he *.csv file.
+
+Devel[batch_*_Lowcov.bed]: The format of the file will be changed to 1-based making it consistent with all other Outputs.
+Devel[WGS_Stats_v1.java]: There is an extra 0 at the start of coverage information of each chromosome in the “*wholeGenomeCov.fasta” output file, that needs to be removed.
